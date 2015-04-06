@@ -1,0 +1,5 @@
+services:
+    coduo.flipper.strategy.system_wide:
+        class: Coduo\FlipperBundle\DependencyInjection\Factory\Strategy\SystemWide
+        tags:
+            -  { name: coduo.flipper.strategy_factory}

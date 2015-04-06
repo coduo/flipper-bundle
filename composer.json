@@ -1,0 +1,15 @@
+{
+    "name": "coduo/flipper-bundle",
+    "type": "symfony-bundle",
+    "description": "Flipper bundle",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3.9",
+        "coduo/flipper": "dev-master",
+        "symfony/framework-bundle": "~2.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.6.*"
+    }
+
+}
