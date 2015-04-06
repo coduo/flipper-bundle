@@ -13,8 +13,10 @@ class CoduoFlipperExtension extends Extension
     {
         $factories = $this->getFactories();
         $configuration = new Configuration($factories);
-
         $config = $this->processConfiguration($configuration, $config);
+
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
     }
 
     /**
@@ -31,7 +33,7 @@ class CoduoFlipperExtension extends Extension
         foreach (array_keys($services) as $id) {
             $factory = $container->get($id);
             if (false === $factory instanceof Factory\Strategy) {
-                throw new \RuntimeException("Strategy factories expect instance of Factory\Strategy.");
+                throw new \RuntimeException("Strategy factories expect instance of Factory\\Strategy.");
             }
             $factories[] = $factory;
         }

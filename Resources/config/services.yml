@@ -1,0 +1,13 @@
+parameters:
+    coduo.flipper.repository.class: Coduo\Flipper\Feature\Repository\InMemoryFeatureRepository
+    coduo.flipper.feature.class: Coduo\Flipper\Feature
+    coduo.flipper.class: Coduo\Flipper
+
+services:
+    coduo.flipper:
+        class: %coduo.flipper.class%
+        arguments:
+            - @coduo.flipper.repository
+
+    coduo.flipper.repository:
+        class: %coduo.flipper.repository.class%

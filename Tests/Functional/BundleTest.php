@@ -13,5 +13,10 @@ class BundleTest extends \PHPUnit_Framework_TestCase
     {
         $kernel = new TestKernel();
         $kernel->boot();
+
+        $flipper = $kernel->getContainer()->get('coduo.flipper');
+        $repo = $kernel->getContainer()->get('coduo.flipper.repository');
+        $this->assertInstanceOf("Coduo\\Flipper", $flipper);
+        $this->assertInstanceOf("Coduo\\Flipper\\Feature\\Repository", $repo);
     }
 }
