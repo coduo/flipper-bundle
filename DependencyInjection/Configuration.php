@@ -37,26 +37,43 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $this->addFeaturesSection();
+        $this->addContextSection();
 
         return $this->treeBuilder;
     }
 
     private function addFeaturesSection()
     {
-
         $strategyNodeBuilder = $this->rootNode
                 ->fixXmlConfig('feature')
-                    ->children()
-                        ->arrayNode('features')
-                            ->useAttributeAsKey('name')
-                            ->prototype('array')
-                            ->performNoDeepMerging()
-                    ->children()
+                ->children()
+                    ->arrayNode('features')
+                        ->useAttributeAsKey('name')
+                        ->prototype('array')
+                        ->performNoDeepMerging()
+                        ->children()
         ;
 
         foreach ($this->factories as $factory) {
             $factoryNode = $strategyNodeBuilder->arrayNode($factory->getKey())->canBeUnset();
             $factory->addConfiguration($factoryNode);
         }
+    }
+
+    private function addContextSection()
+    {
+        $this->rootNode
+            ->fixXmlConfig('context')
+            ->children()
+                ->arrayNode('contexts')
+                    ->requiresAtLeastOneElement()
+                    ->useAttributeAsKey('name')
+                    ->prototype('array')
+                    ->children()
+                        ->arrayNode('argument_resolvers')->treatNullLike(array())->prototype('scalar')->end()->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
     }
 }

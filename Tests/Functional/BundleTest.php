@@ -19,4 +19,17 @@ class BundleTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf("Coduo\\Flipper", $flipper);
         $this->assertInstanceOf("Coduo\\Flipper\\Feature\\Repository", $repo);
     }
+
+    /**
+     * @test
+     */
+    public function it_should_be_able_to_check_defined_features()
+    {
+        $kernel = new TestKernel();
+        $kernel->boot();
+
+        $flipper = $kernel->getContainer()->get('coduo.flipper');
+        $this->assertTrue($flipper->isActive('captcha'));
+
+    }
 }

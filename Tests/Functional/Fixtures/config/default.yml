@@ -15,3 +15,5 @@ coduo_flipper:
         captcha:
             system_wide:
                 enabled: true
+    contexts:
+        default: ~

@@ -5,6 +5,7 @@ namespace Coduo\FlipperBundle\DependencyInjection\Factory\Strategy;
 use Coduo\FlipperBundle\DependencyInjection\Factory\Strategy;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\DefinitionDecorator;
 
 class SystemWide implements Strategy
@@ -17,8 +18,7 @@ class SystemWide implements Strategy
     public function create(ContainerBuilder $container, array $config, $id)
     {
         $container
-            ->setDefinition($id, new DefinitionDecorator('coduo.flipper.strategy.system_wide'))
-            ->replaceArgument(0, $config['enabled'])
+            ->setDefinition($id, new Definition("Coduo\\Flipper\\Activation\\Strategy\\SystemWide", array($config['enabled'])))
             ->setPublic(false)
         ;
     }
