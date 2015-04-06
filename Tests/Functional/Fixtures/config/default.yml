@@ -9,3 +9,9 @@ framework:
     session:
         storage_id:     session.storage.mock_file
     profiler: { only_exceptions: false }
+
+coduo_flipper:
+    features:
+        captcha:
+            system_wide:
+                enabled: true

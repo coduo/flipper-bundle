@@ -17,7 +17,7 @@ class SystemWide implements Strategy
     public function create(ContainerBuilder $container, array $config, $id)
     {
         $container
-            ->setDefinition($id, new DefinitionDecorator('leguide.flipper.strategy.system_wide'))
+            ->setDefinition($id, new DefinitionDecorator('coduo.flipper.strategy.system_wide'))
             ->replaceArgument(0, $config['enabled'])
             ->setPublic(false)
         ;
